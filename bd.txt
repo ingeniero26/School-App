@@ -1,0 +1,17 @@
+CREATE TABLE `homework` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`class_id` INT(11) NULL DEFAULT NULL,
+	`subject_id` INT(11) NULL DEFAULT NULL,
+	`homework_date` DATE NULL DEFAULT NULL,
+	`submission_date` DATE NULL DEFAULT NULL,
+	`document_file` TEXT NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`description` TEXT NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`is_delete` TINYINT(4) NULL DEFAULT '0',
+	`created_by` INT(11) NULL DEFAULT NULL,
+	`created_at` TIMESTAMP NULL DEFAULT NULL,
+	`updated_at` TIMESTAMP NULL DEFAULT NULL,
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8_unicode_ci'
+ENGINE=InnoDB
+;
