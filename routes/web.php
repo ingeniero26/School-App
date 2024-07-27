@@ -55,6 +55,8 @@ Route::post('reset/{token}', [AuthController::class, 'PostReset']);
 Route::group(['middleware' => 'common'], function () {
     Route::get('chat', [ChatController::class, 'chat']);
     Route::post('submit_message', [ChatController::class, 'submit_message']);
+    Route::post('get_chat_windows', [ChatController::class, 'get_chat_windows']);
+    Route::post('get_chat_search_user', [ChatController::class, 'get_chat_search_user']);
 });
 
 //rutas para el administrador
@@ -203,6 +205,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/examinations/marks_grade/edit/{id}', [ExaminationsController::class, 'marks_grade_edit']);
     Route::post('admin/examinations/marks_grade/edit/{id}', [ExaminationsController::class, 'marks_grade_update']);
     Route::get('admin/examinations/marks_grade/delete/{id}', [ExaminationsController::class, 'marks_grade_delete']);
+    Route::get('admin/my_exam_result/print', [ExaminationsController::class, 'myExamResultPrint']);
 
 //modulo control de asistencia
     Route::get('admin/attendance/student', [AttendanceController::class, 'AttendanceStudent']);
@@ -282,6 +285,8 @@ Route::group(['middleware' => 'teacher'], function () {
 
     //registro notas modulo docente
     Route::get('teacher/marks_register', [ExaminationsController::class, 'marks_register_teacher']);
+    Route::get('teacher/my_exam_result/print', [ExaminationsController::class, 'myExamResultPrint']);
+
     Route::post('teacher/submit_marks_register', [ExaminationsController::class, 'submit_marks_register']);
     Route::post('teacher/single_submit_marks_register', [ExaminationsController::class, 'single_submit_marks_register']);
 
@@ -338,6 +343,7 @@ Route::group(['middleware' => 'student'], function () {
     Route::get('student/my_calendar', [CalendarController::class, 'MyCalendar']);
 
     Route::get('student/my_exam_result', [ExaminationsController::class, 'myExamResult']);
+    Route::get('student/my_exam_result/print', [ExaminationsController::class, 'myExamResultPrint']);
 
     Route::get('student/my_attendance', [AttendanceController::class, 'myAttendanceStudent']);
     // noticias

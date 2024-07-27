@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Models\raw;
+use Request;
 
 
 class ChatModel extends Model
@@ -54,6 +55,16 @@ class ChatModel extends Model
          ->join('users as sender', 'sender.id', '=', 'chat.sender_id')
          ->join('users as receiver', 'receiver.id', '=', 'chat.receiver_id');
 
+         if(!empty(Request::get('search')))
+         {
+            $search =Request::get('search');
+            $getuserchat=$getuserchat->where(function($query) use($search){
+                $query->where('sender.name','like','%'.$search. '%')
+                        ->orWhere('receiver.name','like','%'.$search. '%');
+            });
+
+         }
+
          $getuserchat=$getuserchat->whereIn('chat.id', function($query)
          use($user_id){
             $query->selectRaw('max(chat.id)')->from('chat')
@@ -82,7 +93,7 @@ class ChatModel extends Model
             $data['user_id']=$value->connect_user_id;
             $data['name']=$value->getConnectUser->name. ' '.$value->getConnectUser->last_name;
             $data['profile_pic']=$value->getConnectUser->getProfileDirect();
-            $data['meesagecount']=$value->CountMessage($value->connect_user_id, $user_id);
+            $data['messagecount']=$value->CountMessage($value->connect_user_id, $user_id);
             $result[] =$data;
         }
         return $result;

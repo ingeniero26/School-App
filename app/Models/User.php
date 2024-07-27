@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Request;
+use Cache;
 
 class User extends Authenticatable
 {
@@ -29,6 +30,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -49,6 +51,14 @@ class User extends Authenticatable
     {
         return self::find($id);
     }
+
+     public   function OnlineUser()
+    {
+       // return Cache::has('OnlineUser'. $this->id);
+    }
+
+
+
     // obtener saldos
     public static function getPaidAmount($student_id, $class_id)
     {
@@ -93,7 +103,7 @@ class User extends Authenticatable
             ->where('users.user_type', '=', $user_type)
             ->where('users.is_delete', '=', 0)
             ->count();
-     
+
      }
 
 
@@ -283,8 +293,8 @@ class User extends Authenticatable
 
     }
 
-     // panel 
-    
+     // panel
+
      public static function getTeacherStudentCount($teacher_id)
     {
         $return = User::select('users.*',
