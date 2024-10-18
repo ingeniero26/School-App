@@ -44,8 +44,18 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-3">
+                                            <label>Sede</label>
+                                            <select required class="form-control" name="headquater_id" id="ChangeHeadquarter">
+                                                <option value="">Select</option>
+                                                @foreach ($getHeadquarter as $headquarter)
+                                                    <option {{ Request::get('headquater_id') == $headquarter->id ? 'selected' : '' }}
+                                                        value="{{ $headquarter->id }}">{{ $headquarter->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-3">
                                             <label>Programa</label>
-                                            <select required class="form-control" name="class_id">
+                                            <select required class="form-control" name="class_id" id="getClassHeadquarter">
                                                 <option value="">Select</option>
                                                 @foreach ($getClass as $class)
                                                     <option {{ Request::get('class_id') == $class->id ? 'selected' : '' }}
@@ -357,6 +367,25 @@
                 }
             });
 
+        });
+
+        $('body').delegate('#ChangeHeadquarter','change',  function() {
+            var headquarterId = $(this).val();
+            $.ajax({
+                url: '{{ url('admin/student/getClassHeadquarter') }}',
+                type: 'POST',
+                data: {
+                    headquater_id: headquarterId,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function(response) {
+                    $('#getClassHeadquarter').html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
         });
     </script>
 @endsection

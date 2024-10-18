@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Request;
+use Illuminate\Support\Facades\Request;
 
 class AssignClassTeacherModel extends Model
 {
@@ -95,7 +95,7 @@ class AssignClassTeacherModel extends Model
             ->where('assign_class_teacher.teacher_id', '=', $teacher_id)
             ->get();
     }
-    // panel 
+    // panel
        public static function getMyClassSubjectCount($teacher_id)
     {
         return AssignClassTeacherModel::select('assign_class_teacher.id')
@@ -124,7 +124,7 @@ class AssignClassTeacherModel extends Model
          //   ->groupBy('assign_class_teacher.class_id')
             ->count();
     }
-    
+
 
     public static function getCalendarTeacher($teacher_id)
     {

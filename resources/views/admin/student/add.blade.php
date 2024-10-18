@@ -20,7 +20,7 @@
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-          <div class="col-md-8">
+          <div class="col-md-12">
             <!-- general form elements -->
             <div class="card card-primary">
 
@@ -48,7 +48,7 @@
                                 {{ $errors->first('last_name') }}
                                </div>
                          </div>
-                         <div class="form-group col-md-6">
+                         <div class="form-group col-md-4">
                             <label> Tipo Documento<span style="color: red"></span> </label>
                             <select name="document_type" id="" required class="form-control">
                                 <option value="">Tipo Documento</option>
@@ -61,14 +61,14 @@
                                 {{ $errors->first('gender') }}
                                </div>
                          </div>
-                         <div class="form-group col-md-6">
+                         <div class="form-group col-md-4">
                             <label> Número<span style="color: red"></span> </label>
                             <input type="text" class="form-control"
                             value="{{ old('roll_number') }}"
                             placeholder="Documento" name="roll_number">
                          </div>
 
-                         <div class="form-group col-md-6">
+                         <div class="form-group col-md-4">
                             <label> Numero de Matricula<span style="color: red">*</span> </label>
                             <input type="text" required class="form-control"
                             value="{{ old('admission_number') }}"
@@ -79,10 +79,20 @@
                                </div>
                          </div>
 
+                         <div class="form-group col-md-6">
+                            <label> Sede<span style="color: red">*</span> </label>
+                            <select name="headquarter_id" id="ChangeHeadquarter"
+                            class="form-control" required>
+                                <option value="">Seleccione un Sede</option>
+                            @foreach($getHeadquater as $headquarter)
+                                <option value="{{ $headquarter->id }}">{{ $headquarter->name }}</option>
+                            @endforeach
+                            </select>
+                         </div>
 
                          <div class="form-group col-md-6">
                             <label> Programa<span style="color: red">*</span> </label>
-                            <select name="class_id" id=""
+                            <select name="class_id" id="getClassHeadquarter"
                             class="form-control" required>
                                 <option value="">Seleccione un Programa</option>
                             @foreach($getRecord as $class)
@@ -93,16 +103,7 @@
                                 {{ $errors->first('class_id') }}
                                </div>
                          </div>
-                         <div class="form-group col-md-6">
-                            <label> Sede<span style="color: red">*</span> </label>
-                            <select name="headquarter_id" id=""
-                            class="form-control" required>
-                                <option value="">Seleccione un Sede</option>
-                            @foreach($getHeadquater as $headquarter)
-                                <option value="{{ $headquarter->id }}">{{ $headquarter->name }}</option>
-                            @endforeach
-                            </select>
-                         </div>
+
                          <div class="form-group col-md-6">
                             <label> Jornada<span style="color: red">*</span> </label>
                             <select name="journey_id" id=""
@@ -248,15 +249,7 @@
             </div>
             <!-- /.card -->
 
-            <!-- general form elements -->
-
-
-
           </div>
-          <!--/.col (left) -->
-          <!-- right column -->
-
-          <!--/.col (right) -->
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -264,4 +257,27 @@
     <!-- /.content -->
   </div>
 
+@endsection
+@section('script')
+<script>
+ $('body').delegate('#ChangeHeadquarter','change',  function() {
+    var headquarterId = $(this).val();
+    $.ajax({
+        url: '{{ url('admin/student/getClassHeadquarter') }}',
+        type: 'POST',
+        data: {
+            headquater_id: headquarterId,
+            _token: '{{ csrf_token() }}'
+        },
+
+        dataType: 'json',
+        success: function(response) {
+            $('#getClassHeadquarter').html(response);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
+});
+</script>
 @endsection

@@ -42,7 +42,7 @@ class ClassSubjectModel extends Model
 
         $return = $return->where('class_subject.is_delete', '=', 0);
         $return = $return->orderBy('class_subject.id', 'desc')
-            ->paginate(20);
+            ->paginate(50);
         return $return;
     }
 

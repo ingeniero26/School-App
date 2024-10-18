@@ -2,6 +2,7 @@
 
 @section('style')
  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{{url('public/emojionearea/emojionearea.min.css')}}" rel="stylesheet">
 <style type="text/css">
 
 .card {
@@ -178,7 +179,7 @@
 
 .chat .chat-history .other-message:after {
     border-bottom-color: #e8f1f3;
-    left: 93%
+    left: 85%
 }
 
 .chat .chat-message {
@@ -324,7 +325,9 @@
 
 
 @section('script')
-  <script type="">
+<script src="{{url('public/emojionearea/emojionearea.min.js')}}"></script>
+  <script type="text/javascript">
+     $(".emojionearea").emojioneArea();
 
         $('body').delegate('.getChatWindows','click', function (e) {
             e.preventDefault();
@@ -389,6 +392,8 @@
                 success: function(data){
                     $('#AppendMessage').append(data.success);
                     $('#ClearMessage').val('');
+                    $('#file_name').val('');
+                    $('#getFilename').html('');
                     scrolldown();
                 },
                 error: function(data){
@@ -400,6 +405,14 @@
         function scrolldown() {
             $('.chat-history').animate({scrollTop: $('.chat-history').prop("scrollHeight")+ 30000},500);
         }
+
+        $('body').delegate('#OpenFile','click', function (e) {
+             $('#file_name').trigger('click');
+        });
+        $('body').delegate('#file_name','change', function (e) {
+             var filename = this.files[0].name;
+             $('#getFilename').html(filename);
+        });
         scrolldown()
   </script>
 @endsection

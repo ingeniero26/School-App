@@ -8,10 +8,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Listado de Padres de familia</h1>
+                        <h1>Listado de Coordinadores</h1>
                     </div>
                     <div class="col-sm-6" style="text-align:right">
-                        <a href="{{ url('admin/parent/add') }}" class="btn btn-primary">Nuevo Padre/Madre</a>
+                        <a href="{{ url('admin/parent/add') }}" class="btn btn-primary">Nuevo Coordinador</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -150,8 +150,8 @@
                                                     class="btn btn-warning">Editar</a>
                                                 <a href="{{ url('admin/parent/delete/' . $value->id) }}"
                                                     class="btn btn-danger">Eliminar</a>
-                                                <a href="{{ url('admin/parent/my-student/' . $value->id) }}"
-                                                    class="btn btn-success">Estudiante</a>
+                                                <!--<a href="{{ url('admin/parent/my-student/' . $value->id) }}"
+                                                    class="btn btn-success">Estudiante</a>-->
                                                 <a href="{{ url('chat?receiver_id=' . base64_encode($value->id)) }}"
                                                     class="btn btn-success">Mensaje</a>
                                             </td>

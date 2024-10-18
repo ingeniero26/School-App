@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AssignClassTeacherModel;
 use App\Models\ClassModel;
+use App\Models\HeadquartersModel;
 use App\Models\ClassSubjectModel;
 use App\Models\ExamModel;
 use App\Models\ExamScheduleModel;
@@ -269,8 +270,9 @@ class ExaminationsController extends Controller
     {
         $data['getClass'] = ClassModel::getClassSubject();
         $data['getExamR'] = ExamModel::getExamR();
+        $data['getHeadquarter'] = HeadquartersModel::getheadquartersList();
 
-        if (!empty($request->get('exam_id')) && !empty($request->get('class_id'))) {
+        if (!empty($request->get('exam_id')) && !empty($request->get('class_id')) && !empty($request->get('headquater_id'))) {
             $data['getSubject'] = ExamScheduleModel::getSubject($request->get('exam_id'), $request->get('class_id'));
             $data['getStudent'] = User::getStudentClass($request->get('class_id'));
 

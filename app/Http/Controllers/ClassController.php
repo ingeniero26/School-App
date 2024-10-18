@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClassModel;
+use App\Models\HeadquartersModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +19,7 @@ class ClassController extends Controller
     public function add()
     {
         $data['header_title'] = 'Add Class';
+        $data['getHeadquarter'] = HeadquartersModel::getheadquartersList();
         return view('admin.class.add', $data);
     }
 
@@ -30,6 +32,8 @@ class ClassController extends Controller
 
         $class = new ClassModel;
         $class->name = $request->name;
+        $class->headquater_id = $request->headquater_id;
+        $class->program_type = $request->program_type;
         $class->amount = $request->amount;
         $class->status = $request->status;
         $class->created_by = Auth::user()->id;
@@ -42,6 +46,7 @@ class ClassController extends Controller
     public function edit($id)
     {
         $data['getRecord'] = ClassModel::getClass($id);
+        $data['getHeadquarter'] = HeadquartersModel::getheadquartersList();
         if (!empty($data['getRecord'])) {
             $data['header_title'] = 'Editar Clase';
             return view('admin.class.edit', $data);
@@ -58,6 +63,8 @@ class ClassController extends Controller
         // ]);
         $class = ClassModel::getClass($id);
         $class->name = $request->name;
+        $class->headquater_id = $request->headquater_id;
+        $class->program_type = $request->program_type;
         $class->amount = $request->amount;
         $class->status = $request->status;
         $class->save();
@@ -74,5 +81,6 @@ class ClassController extends Controller
         return redirect()->back()->with('success', 'Clase eliminado con exito');
 
     }
+
 
 }

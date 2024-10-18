@@ -102,7 +102,7 @@ class FeesCollectionController extends Controller
     }
 
     // reporte
-    
+
      public function ReportCollectionFees()
     {
        $data['getRecord'] = StudentAddFeesModel::getRecord();
@@ -139,6 +139,7 @@ class FeesCollectionController extends Controller
                 $payment->payment_date = $request->payment_date;
                 $payment->payment_type = $request->payment_type;
                 $payment->remark = $request->remark;
+                $payment->receipt_number = $request->receipt_number;
                 $payment->is_payment = 1;
                 $payment->created_by = Auth::user()->id;
 
@@ -170,17 +171,63 @@ class FeesCollectionController extends Controller
             {
                 $fees->is_payment = 1;
                   $fees->payment_data = json_encode($request->all());
-                $Feess->save();
+                $fees->save();
                 return redirect('student/fees_collection')->with('succes', 'pago exitoso');
             }
             else {
                 return redirect('student/fees_collection')->with('error', 'error al procesar el pago');
             }
-        } 
-        else 
-         
+        }
+        else
+
         {
              return redirect('student/fees_collection')->with('error', 'error al procesar el pago');
+        }
+    }
+
+    public function coordinatorCollectFees(Request $request)
+    {
+       // $data['getClass'] = ClassModel::getClass();
+       $data['getClass'] = ClassModel::getClassSubject();
+        if (!empty($request->all())) {
+            $data['getRecord'] = User::getCollectFeesStudent();
+        }
+        $data['header_title'] = 'Pagos';
+        return view('admin.fees_collection.collection_fees', $data);
+    }
+
+    public function coordinatorCollectFeesSubmit(Request $request)
+    {
+        if (!empty($request->student_id) && !empty($request->amount)) {
+            $student = User::getSingleClass($request->student_id);
+            if (!empty($student)) {
+                $paid_amount = StudentAddFeesModel::getPaidAmount($request->student_id, $student->class_id);
+                $remainingAmount = $student->amount - $paid_amount;
+
+                if ($remainingAmount >= $request->amount) {
+                    $payment = new StudentAddFeesModel;
+                    $payment->student_id = $request->student_id;
+                    $payment->class_id = $student->class_id;
+                    $payment->paid_amount = $request->amount;
+                    $payment->total_amount = $student->amount;
+                    $payment->remaning_amount = $remainingAmount - $request->amount;
+                    $payment->payment_date = date('Y-m-d');
+                    $payment->payment_type = $request->payment_type;
+                    $payment->remark = $request->remark;
+                    $payment->receipt_number = $request->receipt_number;
+                    $payment->is_payment = 1;
+                    $payment->created_by = Auth::user()->id;
+                    $payment->save();
+
+                    return redirect()->back()->with('success', 'Pago registrado con éxito');
+                } else {
+                    return redirect()->back()->with('error', 'La cantidad ingresada es mayor que el valor pendiente');
+                }
+            } else {
+                return redirect()->back()->with('error', 'Estudiante no encontrado');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Por favor, ingrese todos los campos requeridos');
         }
     }
 

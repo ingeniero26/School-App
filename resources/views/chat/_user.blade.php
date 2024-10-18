@@ -10,7 +10,13 @@
              border-radius: 5px; padding: 1px 7px;">{{$user['messagecount']}}</span>
          @endif
          </div>
-        <div class="status"> <i class="fa fa-circle offline"></i>
+        <div class="status">
+            @if(!empty($user['is_online']))
+            <i class="fa fa-circle online"></i> online
+            @else
+
+            <i class="fa fa-circle offline"></i>
+            @endif
             {{ Carbon\Carbon::parse($user['created_date'])->diffForHumans() }} </div>
     </div>
 </li>
