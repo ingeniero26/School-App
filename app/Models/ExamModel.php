@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Request;
+use Illuminate\Support\Facades\Request;
 
 class ExamModel extends Model
 {
@@ -47,13 +47,13 @@ class ExamModel extends Model
         $return = ExamModel::select('exam.id', )
             ->join('users', 'users.id', 'exam.created_by')
             ->where('exam.is_delete', '=', 0)
-           
+
             ->count();
         return $return;
 
     }
 
-    
+
 
     public static function getExam($id)
     {

@@ -21,14 +21,18 @@
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-        
-            
+
+
          @foreach ($getRecord as $value )
         <div class="col-md-12">
-           
+
           <div class="card">
             <div class="card-header">
                <h3 class="card-title"><b> {{$value['exam_name']}}</b> </h3>
+               <a class="btn btn-info btn-sm pull-right ml-1"
+               style="float: right"
+               target="_blank"
+               href="{{url('student/my_exam_result/print?exam_id='.$value['exam_id'].'&student_id='.Auth::user()->id)}}">Imprimir</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
@@ -41,11 +45,11 @@
                     <th>Taller</th>
                     <th>Examen</th>
                      <th>Total</th>
-                    <th>Nota Maxima</th>
-                    <th>Nota Minima</th>
+                    <th> Máxima</th>
+                    <th>Mínima</th>
                     <th>Estado</th>
-                   
-                    
+
+
                    </tr>
                 </thead>
                 <tbody>
@@ -78,9 +82,9 @@
                             <span style="color:red font-weight: bold">Perdiste</span>
                            @endif
                            </td>
-                        
+
                        </tr>
-                    @endforeach  
+                    @endforeach
                     <tr>
                         <td colspan="2">
                             <b>Totales:
@@ -97,14 +101,14 @@
                                 </b>
                         </td>
                         <td colspan="3">
-                            
+
                             <b>Grado:
-                                 {{  $getGrade }} 
+                                 {{  $getGrade }}
                                 </b>
                         </td>
                         <td colspan="2">
                             <b>Estado:
-                                 @if($result_validation == 0) 
+                                 @if($result_validation == 0)
                                  <span style="color: blue">Aprobaste</span>
                                  @else
                                 <span style="color: red">Perdiste</span>

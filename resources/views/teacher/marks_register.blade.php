@@ -129,8 +129,8 @@
                                                             Trabajo Clase:
                                                              <input type="hidden" name="mark[{{ $i }}][full_marks]" value="{{ $subject->full_marks }}">
                                                              <input type="hidden" name="mark[{{ $i }}][passing_mark]" value="{{ $subject->passing_mark }}">
-                                                            
-                                                            
+
+
                                                             <input type="hidden" name="mark[{{ $i }}][id]" value="{{ $subject->id }}">
                                                              <input type="hidden" name="mark[{{ $i }}][subject_id]" value="{{ $subject->subject_id }}">
                                                              <input type="text"
@@ -208,7 +208,9 @@
                                                 <td style="min-width: 200px;">
                                                     <button type="submit"
                                                      class="btn btn-success">
-                                                     Guardar</button> <br /> <br>
+                                                     Guardar</button> <a class="btn btn-info"
+                                                     target="_blank"
+                                                     href="{{url('teacher/my_exam_result/print?exam_id='. Request::get('exam_id').'&student_id='.$student->id)}}">Imprimir</a>
                                                     @if(!empty($totalStudentMark))
                                                         <p>Total Asignaturas:{{ $totalFullMark  }} <br/></p>
                                                         <p>Total Aprobado: {{ $totalPassingMark }}</p>
@@ -222,7 +224,7 @@
                                                      @if(!empty($getGrade))
                                                        <b>Grado:</b>  {{ $getGrade; }} <br>
                                                       @endif
-                                                    
+
                                                       @if($pass_fail_vali == 0)
                                                       <b>Estado:</b>  <span style="color: blue">Aprobado</span>
                                                         @else

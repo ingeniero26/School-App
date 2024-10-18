@@ -65,17 +65,9 @@
                 <!-- /.card-body -->
               </form>
             </div>
-            <!-- /.card -->
-
-            <!-- general form elements -->
-
-
 
           </div>
-          <!--/.col (left) -->
-          <!-- right column -->
 
-          <!--/.col (right) -->
         </div>
         <!-- /.row -->
             @include('_message')
@@ -91,6 +83,8 @@
                   <tr>
                     <th>#</th>
                     <th>Nombre</th>
+                    <th>Sede</th>
+                    <th>Tipo de Programa</th>
                     <th>Monto</th>
                     <th>Estado</th>
                     <th>Usuario</th>
@@ -103,8 +97,17 @@
                        <tr>
                            <td>{{$value->id  }}</td>
                            <td>{{$value->name  }}</td>
+                           <td>{{$value->Headquarter->name  }}</td>
+                           <td>
+                            @if($value->program_type==1)
+                            Curso Corto
+                            @elseif($value->program_type==2)
+                            Intermedio
+                            @elseif($value->program_type==3)
+                            Tecnico
+                            @endif
+                           </td>
                            <td>${{number_format($value->amount,2)  }}</td>
-
                            <td>
                             @if($value->status==0)
                             Activo

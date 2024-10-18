@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Request;
+use Illuminate\Support\Facades\Request;
 
 class HeadquartersModel extends Model
 {

@@ -35,6 +35,23 @@
                     value="{{ $getRecord->name}}">
                   </div>
                   <div class="form-group">
+                    <label>Sede</label>
+                    <select name="headquater_id" id="ChangeHeadquarter" class="form-control">
+                        <option value="">Selecciona una sede</option>
+                        @foreach($getHeadquarter as $value)
+                            <option {{ ($getRecord->headquater_id==$value->id) ? 'selected':'' }} value="{{$value->id}}">{{$value->name}}</option>
+                        @endforeach
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Tipo de Programa</label>
+                    <select name="program_type" id="ChangeProgramType" class="form-control">
+                        <option {{ ($getRecord->program_type==1) ? 'selected':'' }} value="1">Curso Corto</option>
+                        <option {{ ($getRecord->program_type==2) ? 'selected':'' }} value="2">Intermedio</option>
+                        <option {{ ($getRecord->program_type==3) ? 'selected':'' }} value="3">Tecnico</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
                     <label>Ingresa el valor($)</label>
                     <input type="number"
                      name="amount" required

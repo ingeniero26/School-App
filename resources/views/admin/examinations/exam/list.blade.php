@@ -9,7 +9,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Semestres-Periodos Academicos</h1>
+          <h1>Semestres-Academicos</h1>
         </div>
         <div class="col-sm-6" style="text-align:right">
           <a href="{{ url('admin/examinations/exam/add') }}" class="btn btn-primary">Nuevo Examen</a>

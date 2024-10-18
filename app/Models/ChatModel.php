@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\raw;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 
 class ChatModel extends Model
@@ -54,6 +56,16 @@ class ChatModel extends Model
          ->join('users as sender', 'sender.id', '=', 'chat.sender_id')
          ->join('users as receiver', 'receiver.id', '=', 'chat.receiver_id');
 
+         if(!empty(Request::get('search')))
+         {
+            $search =Request::get('search');
+            $getuserchat=$getuserchat->where(function($query) use($search){
+                $query->where('sender.name','like','%'.$search. '%')
+                        ->orWhere('receiver.name','like','%'.$search. '%');
+            });
+
+         }
+
          $getuserchat=$getuserchat->whereIn('chat.id', function($query)
          use($user_id){
             $query->selectRaw('max(chat.id)')->from('chat')
@@ -80,9 +92,10 @@ class ChatModel extends Model
             $data['message']=$value->message;
             $data['created_date']=$value->created_date;
             $data['user_id']=$value->connect_user_id;
+            $data['is_online']=$value->getConnectUser->OnlineUser();
             $data['name']=$value->getConnectUser->name. ' '.$value->getConnectUser->last_name;
             $data['profile_pic']=$value->getConnectUser->getProfileDirect();
-            $data['meesagecount']=$value->CountMessage($value->connect_user_id, $user_id);
+            $data['messagecount']=$value->CountMessage($value->connect_user_id, $user_id);
             $result[] =$data;
         }
         return $result;
@@ -98,4 +111,25 @@ class ChatModel extends Model
         self::where('sender_id','=',$receiver_id)->where('receiver_id','=',$sender_id)
         ->where('status', '=', '0')->update(['status' => '1']);
      }
+
+    static public function getFile($file)
+    {
+        if (!empty($file) && file_exists('upload/chat/'.$file)) {
+            return url('upload/chat/'.$file);
+        } else {
+            return url('upload/chat/default.png');
+        }
+    }
+
+    static public function getChatChatCount()
+    {
+        $user_id = Auth::user()->id;
+        $return = self::select('chat.id')
+        ->join('users as sender', 'sender.id', '=', 'chat.sender_id')
+         ->join('users as receiver', 'receiver.id', '=', 'chat.receiver_id')
+         ->where('chat.receiver_id','=',$user_id)
+         ->where('chat.status','=',0)
+         ->count();
+    }
+
 }

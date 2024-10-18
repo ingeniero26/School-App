@@ -29,9 +29,28 @@
                 {{ @csrf_field() }}
                 <div class="card-body">
                   <div class="form-group">
-                    <label>Nombre Clase</label>
+                    <label>Nombre Prorama</label>
                     <input type="text" class="form-control"
                     placeholder="nombre clase" name="name">
+                  </div>
+                  <div class="form-group">
+                    <label>Sede</label>
+                    <select name="headquater_id" id="ChangeHeadquarter" class="form-control">
+                        <option value="">Selecciona una sede</option>
+                        @foreach($getHeadquarter as $value)
+                            <option value="{{$value->id}}">{{$value->name}}</option>
+                        @endforeach
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Tipo de Programa</label>
+                    <select name="program_type" id="ChangeProgramType" class="form-control">
+                        <option value="">Selecciona un tipo de programa</option>
+                        <option value="1">Curso Corto</option>
+                        <option value="2">Intermedio</option>
+                        <option value="3">Tecnico</option>
+                    </select>
                   </div>
                   <div class="form-group">
                     <label>Ingresa el valor($)</label>

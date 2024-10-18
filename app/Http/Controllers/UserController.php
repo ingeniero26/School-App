@@ -13,11 +13,11 @@ class UserController extends Controller
 {
     public function change_password()
     {
-       
+
         $data['header_title'] = 'Cambiar contraseña';
         return view('profile.change_password', $data);
     }
-    
+
     public function Setting()
     {
         $data['getRecord'] =SettingModel::getSingle();
@@ -26,10 +26,16 @@ class UserController extends Controller
     }
 
     public function UpdateSetting(Request $request)
-    { 
+    {
         $setting = SettingModel::getSingle();
         $setting->paypal_email = trim($request->paypal_email);
-        if (!empty($request->file('logo'))) {
+        $setting->school_name = trim($request->school_name);
+        $setting->exam_description = trim($request->exam_description);
+        $setting->operating_license = trim($request->operating_license);
+        $setting->legal_representative = trim($request->legal_representative);
+        $setting->address = trim($request->address);
+        $setting->phone = trim($request->phone);
+        if (!empty($request->file('favicon_icon'))) {
 
             $ext = $request->file('favicon_icon')->getClientOriginalExtension();
             $file = $request->file('favicon_icon');
@@ -48,9 +54,9 @@ class UserController extends Controller
             $file->move('upload/setting/', $filename);
             $setting->logo = $filename;
         }
-        
+
         $setting->save();
-        return redirect()->back()->with('success', 'Configuración editado exitosamente sistema');
+        return redirect()->back()->with('success', 'Configuración editada exitosamente sistema');
     }
 
 

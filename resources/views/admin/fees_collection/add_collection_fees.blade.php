@@ -59,6 +59,7 @@
                     <th>Saldo</th>
                     <th>Tipo</th>
                     <th>Observaciones</th>
+                    <th>Número de Recibo</th>
                     <th>Creado</th>
                     <th>Acciones</th>
                   </tr>
@@ -74,6 +75,7 @@
                                 <td>${{number_format($value->remaning_amount,2)  }}</td>
                                  <td>{{ $value->payment_type }} </td>
                                  <td>{{ $value->remark }} </td>
+                                 <td>{{ $value->receipt_number }} </td>
                                  <td>{{ $value->created_by_name }} </td>
                                 <td>{{date('d-m-y H:i A',strtotime($value->created_at )) }}</td>
 
@@ -162,6 +164,10 @@
                     <div class="form-group">
                         <label  class="col-form-label">Observaciones:</label>
                         <textarea class="form-control" name="remark" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-form-label"> <span style="color: red">*</span>Número de Recibo:</label>
+                        <input type="text" class="form-control"  name="receipt_number" required>
                     </div>
 
                 </div>

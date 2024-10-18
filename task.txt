@@ -1,0 +1,4 @@
+1. Blog backend
+2. categorias front
+3. mostrar post   front
+detalles del blog en  front

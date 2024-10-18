@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Request;
+use Illuminate\Support\Facades\Request;
 
 class StudentAddFeesModel extends Model
 {
@@ -88,8 +88,8 @@ class StudentAddFeesModel extends Model
                  if (!empty(Request::get('payment_type'))) {
                     $return = $return->where('student_add_fees.payment_type', '=', Request::get('payment_type'));
                 }
-                    
-           
+
+
             $return=$return->orderBy('student_add_fees.id', 'desc')
             ->paginate(50);
 

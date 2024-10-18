@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AssignClassTeacherModel;
 use App\Models\ClassModel;
 use App\Models\StudentAttendanceModel;
+use App\Models\HeadquartersModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,7 @@ class AttendanceController extends Controller
 {
     public function AttendanceStudent(Request $request)
     {
+        $data['getHeadquater'] = HeadquartersModel::getheadquartersList();
         $data['getClass'] = ClassModel::getClassSubject();
         if (!empty($request->get('class_id')) &&
             !empty($request->get('attendance_date'))) {

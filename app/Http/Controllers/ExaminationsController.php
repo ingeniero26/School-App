@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\AssignClassTeacherModel;
 use App\Models\ClassModel;
+use App\Models\HeadquartersModel;
 use App\Models\ClassSubjectModel;
 use App\Models\ExamModel;
 use App\Models\ExamScheduleModel;
 use App\Models\MarksGradeModel;
 use App\Models\MarksRegisterModel;
 use App\Models\User;
+use App\Models\SettingModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -268,8 +270,9 @@ class ExaminationsController extends Controller
     {
         $data['getClass'] = ClassModel::getClassSubject();
         $data['getExamR'] = ExamModel::getExamR();
+        $data['getHeadquarter'] = HeadquartersModel::getheadquartersList();
 
-        if (!empty($request->get('exam_id')) && !empty($request->get('class_id'))) {
+        if (!empty($request->get('exam_id')) && !empty($request->get('class_id')) && !empty($request->get('headquater_id'))) {
             $data['getSubject'] = ExamScheduleModel::getSubject($request->get('exam_id'), $request->get('class_id'));
             $data['getStudent'] = User::getStudentClass($request->get('class_id'));
 
@@ -410,6 +413,7 @@ class ExaminationsController extends Controller
         foreach ($getExam as $value) {
             $dataE = array();
             $dataE['exam_name'] = $value->exam_name;
+            $dataE['exam_id'] = $value->exam_id;
             $getExamSubject = MarksRegisterModel::getExamSubject($value->exam_id, Auth::user()->id);
 
             $dataSubject = array();
@@ -538,6 +542,40 @@ class ExaminationsController extends Controller
         $grade->save();
 
         return redirect('admin/examinations/marks_grade')->with('success', 'Examen editado con exito');
+    }
+
+    public function myExamResultPrint(Request $request)
+    {
+        $exam_id = $request->exam_id;
+        $student_id = $request->student_id;
+
+        $data['getExam']=ExamModel::getExam($exam_id);
+        $data['getStudent']=User::getSingle($student_id);
+
+        $data['getClass']= MarksRegisterModel::getClass($exam_id,
+        $student_id);
+        $data['getSetting']=SettingModel::getSingle();
+
+        $getExamSubject = MarksRegisterModel::getExamSubject($exam_id,
+        $student_id);
+
+        $dataSubject = array();
+        foreach ($getExamSubject as $exam) {
+            $total_score = $exam['class_work'] + $exam['home_work'] + $exam['test_work'] + $exam['exam'];
+            $dataS = array();
+            $dataS['subject_name'] = $exam['subject_name'];
+            $dataS['class_work'] = $exam['class_work'];
+            $dataS['home_work'] = $exam['home_work'];
+            $dataS['test_work'] = $exam['test_work'];
+            $dataS['exam'] = $exam['exam'];
+            $dataS['total_score'] = $total_score;
+            $dataS['full_marks'] = $exam['full_marks'];
+            $dataS['passing_mark'] = $exam['passing_mark'];
+            $dataSubject[] = $dataS;
+
+        }
+        $data['getExamMark'] = $dataSubject;
+        return view('exam_result_print', $data);
     }
 
 }

@@ -43,7 +43,7 @@ class ClassModel extends Model
     return $return;
     }
 
-    
+
        public static function getTotalClass() {
         $return = ClassModel::select('class.id')
         ->join('users', 'users.id', 'class.created_by')
@@ -58,4 +58,18 @@ class ClassModel extends Model
     {
         return self::find($id);
     }
+    public static function getClassHeadquarter($headquater_id)
+    {
+        return self::where('headquater_id', $headquater_id)
+        ->where('is_delete', 0)
+        ->where('status', 0)
+        ->orderBy('name', 'asc')
+        ->get();
+    }
+    public function Headquarter()
+    {
+        return $this->belongsTo(HeadquartersModel::class, 'headquater_id');
+    }
+
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ClassModel;
 use App\Models\ClassSubjectModel;
 use App\Models\ClassSubjectTimetableModel;
+use App\Models\HeadquartersModel;
 use App\Models\SubjectModel;
 use App\Models\User;
 use App\Models\WeekModel;
@@ -15,6 +16,7 @@ class ClassTimetableController extends Controller
 {
     public function list(Request $request)
     {
+        $data['getHeadquater'] = HeadquartersModel::getheadquartersList();
         $data['getClassSubject'] = ClassModel::getClassSubject();
         if (!empty($request->class_id)) {
             $data['getSubject'] = ClassSubjectModel::MySubject($request->class_id);
@@ -26,7 +28,7 @@ class ClassTimetableController extends Controller
             $dataW = array();
             $dataW['week_id'] = $value->id;
             $dataW['week_name'] = $value->name;
-           
+
 
             if (!empty($request->class_id) && !empty($request->subject_id)) {
                 $ClassSubject = ClassSubjectTimetableModel::getRecordClassSubject($request->class_id, $request->subject_id, $value->id);

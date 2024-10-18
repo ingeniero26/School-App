@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class ProductColorModel extends Model
+{
+    use HasFactory;
+
+    protected $table = 'product_color';
+
+    static public function DeleteRecord($product_id)
+    {
+        self::where('product_id', '=', $product_id)->delete();
+    }
+
+
+    public function product()
+    {
+        return $this->belongsTo(ProductModel::class, 'product_id');
+    }
+
+    public function color()
+    {
+        return $this->belongsTo(ColorModel::class, 'color_id');
+    }
+}
