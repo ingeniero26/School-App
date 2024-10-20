@@ -23,5 +23,9 @@ class RegistrationModel extends Model
         {
             return $this->belongsTo(HeadquartersModel::class, 'headquater_id');
         }
+        public function journeys()
+        {
+            return $this->belongsTo(JourneysModel::class, 'journey_id');
+        }
 
 }

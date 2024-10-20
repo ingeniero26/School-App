@@ -7,6 +7,7 @@ use App\Models\HeadquartersModel;
 use App\Models\RegistrationModel;
 use Illuminate\Http\Request;
 use App\Exports\EnrollmentsExport;
+use App\Models\JourneysModel;
 use Maatwebsite\Excel\Facades\Excel;
 
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +22,7 @@ class RegistrationController extends Controller
     }
     public function showEnrolledStudents(Request $request)
     {
-        $query = RegistrationModel::with('student', 'class', 'headquarter');
+        $query = RegistrationModel::with('student', 'class', 'headquarter','journeys');
            // ->where('status', 1); // 1: matriculado
 
         if ($request->has('class_id') && !empty($request->class_id)) {
@@ -35,8 +36,9 @@ class RegistrationController extends Controller
         $enrollments = $query->get();
         $classes = ClassModel::all();
         $headquarters = HeadquartersModel::all();
+        $journeys = JourneysModel::all();
 
-        return view('admin.registration.enrrolled', compact('enrollments', 'classes', 'headquarters'));
+        return view('admin.registration.enrrolled', compact('enrollments', 'classes', 'headquarters','journeys'));
     }
 
     public function export()
