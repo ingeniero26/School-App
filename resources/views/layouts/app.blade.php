@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ !empty($header_title)?$header_title : 'SisSchooll'  }}</title>
   @php
-    $getHeaderSetting = App\Models\SettingModel::getSingle();
+    $getHeaderSetting = App\Models\InstitutionModel::getSingle();
   @endphp
   <link rel="icon" type="image/jpg" href="{{ $getHeaderSetting->getFavicon() }}">
 

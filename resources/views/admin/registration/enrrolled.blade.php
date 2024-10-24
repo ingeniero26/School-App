@@ -26,11 +26,11 @@
                             @endforeach
                         </select>
                     </div>
-                     <button type="submit" class="btn btn-primary">Filtrar</button> <br>
-                </div>
+                </div> <br>
+                <button type="submit" class="btn btn-success">Filtrar</button> <br>
 
 
-                <a href="{{ url('registration.export') }}" class="btn btn-primary">Exportar a Excel</a>
+                {{-- <a href="" class="btn btn-primary">Exportar a Excel</a> --}}
             </form>
             <table class="table table-bordered">
                 <thead>

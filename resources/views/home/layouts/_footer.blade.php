@@ -3,7 +3,7 @@
       <div class="row mb-5">
         <div class="col-md pt-5">
           <div class="ftco-footer-widget pt-md-5 mb-4">
-            <h2 class="ftco-heading-2">TEST</h2>
+            <h2 class="ftco-heading-2">UNITEC</h2>
             <p>Ofrecemos estudios técnicos y cursos prácticos para que adquieras las habilidades que demanda el mercado laboral. ¡Inscríbete hoy y construye tu futuro con nosotros.</p>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
               <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
@@ -27,13 +27,13 @@
   </div>
   <div class="col-md pt-5">
      <div class="ftco-footer-widget pt-md-5 mb-4">
-        <h2 class="ftco-heading-2">Recent Courses</h2>
+        <h2 class="ftco-heading-2">Programas Recientes</h2>
         <ul class="list-unstyled">
-          <li><a href="#" class="py-2 d-block">Computer Engineering</a></li>
-          <li><a href="#" class="py-2 d-block">Web Design</a></li>
-          <li><a href="#" class="py-2 d-block">Business Studies</a></li>
-          <li><a href="#" class="py-2 d-block">Civil Engineering</a></li>
-          <li><a href="#" class="py-2 d-block">Computer Technician</a></li>
+          <li><a href="#" class="py-2 d-block">Ingles</a></li>
+          <li><a href="#" class="py-2 d-block">Barbería</a></li>
+          <li><a href="#" class="py-2 d-block">Diseño web</a></li>
+          <li><a href="#" class="py-2 d-block">Mantenimiento de computadores</a></li>
+          <li><a href="#" class="py-2 d-block">Gestión Administrativa</a></li>
           <li><a href="#" class="py-2 d-block">Web Developer</a></li>
       </ul>
   </div>

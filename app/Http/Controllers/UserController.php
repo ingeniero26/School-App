@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\SettingModel;
+use App\Models\InstitutionModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -20,14 +20,14 @@ class UserController extends Controller
 
     public function Setting()
     {
-        $data['getRecord'] =SettingModel::getSingle();
+        $data['getRecord'] =InstitutionModel::getSingle();
         $data['header_title'] = 'Configuracion';
         return view('admin.setting', $data);
     }
 
     public function UpdateSetting(Request $request)
     {
-        $setting = SettingModel::getSingle();
+        $setting = InstitutionModel::getSingle();
         $setting->paypal_email = trim($request->paypal_email);
         $setting->school_name = trim($request->school_name);
         $setting->exam_description = trim($request->exam_description);

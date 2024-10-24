@@ -5,10 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SettingModel extends Model
+class InstitutionModel extends Model
 {
     use HasFactory;
-    protected $table = 'setting';
+    protected $table = 'institutions';
+    public function users()
+{
+    return $this->hasMany(User::class, 'institution_id');
+}
 
      public static function getSingle()
      {

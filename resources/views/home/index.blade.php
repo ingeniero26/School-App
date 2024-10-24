@@ -8,8 +8,8 @@
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
                 <div class="col-md-7 ftco-animate">
-                    <span class="subheading">Bienvenidos a TEST</span>
-                    <h1 class="mb-4">TEST</h1>
+                    <span class="subheading">Bienvenidos a UNITEC</span>
+                    <h1 class="mb-4">UNITEC</h1>
                     </p>
                     <p class="mb-0"><a href="{{url('course')}}" class="btn btn-primary">Programas Ofertados</a>
                          <a href="{{url('contact')}}"
@@ -117,8 +117,8 @@
                             <h3><a href="#">Administrativo /Contable</a></h3>
                             <p class="advisor">Advisor <span>Tony Garret</span></p>
                             <ul class="d-flex justify-content-between">
-                                <li><span class="flaticon-shower"></span>2300</li>
-                                <li class="price">$199</li>
+                                <li><span class="flaticon-shower"></span>40</li>
+                                <li class="price">$-</li>
                             </ul>
                         </div>
                     </div>
@@ -133,8 +133,8 @@
                             <h3><a href="#">Desarrollo de software</a></h3>
                             <p class="advisor">Advisor <span>Tony Garret</span></p>
                             <ul class="d-flex justify-content-between">
-                                <li><span class="flaticon-shower"></span>2300</li>
-                                <li class="price">$199</li>
+                                <li><span class="flaticon-shower"></span>40</li>
+                                <li class="price">$-</li>
                             </ul>
                         </div>
                     </div>
@@ -149,8 +149,8 @@
                             <h3><a href="#">Mantenimiento de motos</a></h3>
                             <p class="advisor">Advisor <span>Tony Garret</span></p>
                             <ul class="d-flex justify-content-between">
-                                <li><span class="flaticon-shower"></span>2300</li>
-                                <li class="price">$199</li>
+                                <li><span class="flaticon-shower"></span>40</li>
+                                <li class="price">$-</li>
                             </ul>
                         </div>
                     </div>
@@ -166,8 +166,8 @@
                             <h3><a href="#">Auxiliar Salud ocupacional</a></h3>
                             <p class="advisor">Advisor <span>Tony Garret</span></p>
                             <ul class="d-flex justify-content-between">
-                                <li><span class="flaticon-shower"></span>2300</li>
-                                <li class="price">$199</li>
+                                <li><span class="flaticon-shower"></span>40</li>
+                                <li class="price">$-</li>
                             </ul>
                         </div>
                     </div>
@@ -182,8 +182,8 @@
                             <h3><a href="#">Curso Peluqueria /Barberia</a></h3>
                             <p class="advisor">Advisor <span>Tony Garret</span></p>
                             <ul class="d-flex justify-content-between">
-                                <li><span class="flaticon-shower"></span>2300</li>
-                                <li class="price">$199</li>
+                                <li><span class="flaticon-shower"></span>40</li>
+                                <li class="price">$-</li>
                             </ul>
                         </div>
                     </div>
@@ -198,8 +198,8 @@
                             <h3><a href="#">Auxiliar de enfermeria</a></h3>
                             <p class="advisor">Advisor <span>Tony Garret</span></p>
                             <ul class="d-flex justify-content-between">
-                                <li><span class="flaticon-shower"></span>2300</li>
-                                <li class="price">$199</li>
+                                <li><span class="flaticon-shower"></span>40</li>
+                                <li class="price">$-</li>
                             </ul>
                         </div>
                     </div>
@@ -281,8 +281,8 @@
         <div class="container">
             <div class="row pb-4">
                 <div class="col-md-7 heading-section ftco-animate">
-                    <span class="subheading">Testimonial</span>
-                    <h2 class="mb-4">What Are Students Says</h2>
+                    <span class="subheading">Ttimonios</span>
+                    <h2 class="mb-4">Que dicen nuestros estudiantes</h2>
                 </div>
             </div>
         </div>
