@@ -26,11 +26,11 @@
                             @endforeach
                         </select>
                     </div>
-                     <button type="submit" class="btn btn-primary">Filtrar</button> <br>
-                </div>
+                </div> <br>
+                <button type="submit" class="btn btn-success">Filtrar</button> <br>
 
 
-                <a href="{{ url('registration.export') }}" class="btn btn-primary">Exportar a Excel</a>
+                {{-- <a href="" class="btn btn-primary">Exportar a Excel</a> --}}
             </form>
             <table class="table table-bordered">
                 <thead>
@@ -41,6 +41,7 @@
 
                         <th>Sede</th>
                         <th>Programa</th>
+                        <th>Jornada</th>
                         <th>Fecha Matricula</th>
                         <th>Estado</th>
                     </tr>
@@ -53,6 +54,7 @@
                             <td>{{ $enrollment->student->roll_number }}</td>
                             <td>{{ $enrollment->headquarter->name }}</td>
                             <td>{{ $enrollment->class->name }}</td>
+                            <td>{{ $enrollment->journeys->name }}</td>
                             <td>{{ $enrollment->date_of_entry }}</td>
                             <td>  <select class="form-control changeStatus" style="width: 170px;" id="{{$enrollment->id}}">
                                 <option {{($enrollment->status == '1') ? 'selected' : ''}} value="1"> <span class="badge bg-primary">Matrciulado</span></option>

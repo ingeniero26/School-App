@@ -57,6 +57,10 @@ class User extends Authenticatable
         return Cache::has('OnlineUser'. $this->id);
     }
 
+    public function institution()
+    {
+        return $this->belongsTo(InstitutionModel::class, 'institution_id');
+    }
 
 
     // obtener saldos
